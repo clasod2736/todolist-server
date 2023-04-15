@@ -1,0 +1,29 @@
+.todoInput {
+    display: inline;
+    background: linear-gradient(to left, #232526, #414345);
+    width: 300px;
+    height: 30px;
+    padding: 2px;
+    border-color: black;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+input::placeholder {
+    color: black;
+}
+
+input:focus {
+    outline: none;
+}
+
+.submitBtn {
+    display: inline;
+    width: 38px;
+    height: 38px;
+    padding: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #3f2b96;
+}
