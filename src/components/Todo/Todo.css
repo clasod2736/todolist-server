@@ -15,7 +15,7 @@ input:checked {
 }
 
 .deleteBtn {
-    color:  steelblue;
+    color:  rgb(16, 109, 185);
     width: 23px;
     height: 23px;
     padding: 2px;

@@ -20,18 +20,6 @@ export default function AddTodo({onAdd}) {
       //응답이 이 함수안으로 들어왔으니 아이디만 따로 변수로 할당해준다.
       const NewTodoId = newTodoResponse.data.newTodoId
       console.log(NewTodoId);
-      
-      //아이디 조회 하는 API "좋지않은 예제 동작하지 않았음."
-      // await axios.get('http://localhost:8080/saveID', {
-      //   params: {
-      //     "job": text
-      //   }
-      // })
-      // .then(function (response) {
-      //   const mongoID = response.data
-      //   setIdentif(mongoID)
-      //   console.log(mongoID)
-      // });
       onAdd({id: NewTodoId , text, status: 'active'});
       setText('');
     }}
