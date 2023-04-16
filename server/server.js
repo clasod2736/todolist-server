@@ -24,15 +24,6 @@ app.get('/', (res, req) => {
     req.sendFile(path.join(__dirname, '../build/index.html'));
   })
 
-//각 객체의 오브젝트아이디를 데이터베이스에서 불러와 프론트엔드로 보내주기
-// app.get('/saveID', async (req, res) => {
-//     const data = await MyTodoList.findOne({
-//         "job": req.data
-//     })
-//     res.send(data)
-//     console.log(req.job)
-// })
-
 //데이터 베이스에있는 리스트 전부 불러오기.
 app.get('/loadAllPost', async function (req, res) {
     const data = await MyTodoList.find({});
@@ -45,7 +36,7 @@ app.get('/loadAllPost', async function (req, res) {
 app.post('/insert', async function (req, res) {
 
     const todoJob = req.body.job;
-
+    
     try {
      const newTodo = new MyTodoList({
          job: todoJob
@@ -60,13 +51,14 @@ app.post('/insert', async function (req, res) {
          res.send("didn't work?")
     }
 })
-// DElETE 삭제 API
+
+// DElETE 개별삭제 API
 app.delete('/deleteOne', async function (req, res) {
     try {
-        const todoJob = req.body.id;
+        const todoId = req.body.id;
 
         await MyTodoList.deleteOne(
-            { "_id": todoJob }
+            { "_id": todoId }
         );
         res.sendStatus(200)
     } catch (error) {

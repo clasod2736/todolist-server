@@ -19,8 +19,7 @@ export default function AddTodo({onAdd}) {
       })
       //응답이 이 함수안으로 들어왔으니 아이디만 따로 변수로 할당해준다.
       const NewTodoId = newTodoResponse.data.newTodoId
-      console.log(NewTodoId);
-      onAdd({id: NewTodoId , job: text, status: 'active'});
+      onAdd({id: NewTodoId , job: text});
       setText('');
     }}
 

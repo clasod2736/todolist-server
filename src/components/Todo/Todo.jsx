@@ -2,29 +2,28 @@ import React, { useState } from 'react'
 import './Todo.css'
 import axios from 'axios'
 
-export default function Todo({ dataValue, id, todo, onUpdate, onDelete, minusCount }) {
+export default function Todo({ id, todo, onUpdate, onDelete, minusCount }) {
     const [line, setLine] = useState([])
 
     const handleChecked = (e) => {
-        onUpdate({...dataValue, status: e.target.checked ? 'completed' : 'active'});
+        onUpdate({...todo, status: e.target.checked ? 'completed' : 'active'});
       }
     const lineText = (e) => {
         if (todo.status === 'completed') {
+          setLine(<label style={{ textDecoration: 'line-through'}}>{todo.job}</label>);
           e.preventDefault();
-          setLine(<label style={{ textDecoration: 'line-through'}}>{dataValue}</label>);
         } else if (todo.status === 'active') {
             e.preventDefault();
-            setLine(dataValue);
+            setLine(todo.job);
         }};
     const newText = () => {
         if (todo.status === 'completed') {
           return line;
         } else {
-          return dataValue
+          return todo.job
         }}
       const handleDelete = async (e) => {
-        onDelete(id);
-        console.log(id)
+        onDelete(todo);
 
         await axios.delete ('http://localhost:8080/deleteOne', {
           data: {
