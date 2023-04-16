@@ -25,6 +25,7 @@ export default function Todo({ id, todo, onUpdate, onDelete, minusCount }) {
       const handleDelete = async (e) => {
         onDelete(todo);
 
+        //개별삭제 API 요청
         await axios.delete('http://localhost:8080/deleteOne', {
           data: {
           "id": id
