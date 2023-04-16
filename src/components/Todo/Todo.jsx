@@ -25,7 +25,7 @@ export default function Todo({ id, todo, onUpdate, onDelete, minusCount }) {
       const handleDelete = async (e) => {
         onDelete(todo);
 
-        await axios.delete ('http://localhost:8080/deleteOne', {
+        await axios.delete('http://localhost:8080/deleteOne', {
           data: {
           "id": id
         }})

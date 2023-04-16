@@ -24,6 +24,8 @@ export default function Todolist() {
   const handleDelete = (deleted) =>
     setDatas(datas.filter((t) => t !== deleted));
   const handleReset = async () => {
+    
+    // 리셋 API 요청
     try{
     await axios.delete('http://localhost:8080/resetAll', {})
     } catch (err) {
@@ -31,6 +33,7 @@ export default function Todolist() {
     }
     setDatas(datas.filter((t) => t.id === 0));
     resetCounter();}
+
   const plusCounter = () => setCount(datas.length + 1);
   const minusCounter = () => setCount(datas.length - 1);
   const resetCounter = () => setCount(0);
@@ -49,7 +52,7 @@ export default function Todolist() {
         <ul className='todos'>
            {datas.map((item) => (
             <Todo
-            key={item._id}
+            key={item.id}
             id={item._id}
             todo={item}
             onUpdate={handleUpdate}
