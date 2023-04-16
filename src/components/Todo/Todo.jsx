@@ -6,7 +6,7 @@ export default function Todo({ dataValue, id, todo, onUpdate, onDelete, minusCou
     const [line, setLine] = useState([])
 
     const handleChecked = (e) => {
-        onUpdate({...todo, status: e.target.checked ? 'completed' : 'active'});
+        onUpdate({...dataValue, status: e.target.checked ? 'completed' : 'active'});
       }
     const lineText = (e) => {
         if (todo.status === 'completed') {
@@ -23,8 +23,7 @@ export default function Todo({ dataValue, id, todo, onUpdate, onDelete, minusCou
           return dataValue
         }}
       const handleDelete = async (e) => {
-        await onDelete(id);
-        minusCount();
+        onDelete(id);
         console.log(id)
 
         await axios.delete ('http://localhost:8080/deleteOne', {
@@ -38,14 +37,14 @@ export default function Todo({ dataValue, id, todo, onUpdate, onDelete, minusCou
           console.log(error);
         });
         e.preventDefault();
+        minusCount();
       }
 
     return (
-        <li>
+        <li key={id}>
             <input 
             type='checkbox'
             id='checkbox'
-            checked={todo.status === 'completed'}
             className='checkbox'
             onChange={handleChecked}
             onInputCapture={lineText}

@@ -37,7 +37,6 @@ app.get('/', (res, req) => {
 app.get('/loadAllPost', async function (req, res) {
     const data = await MyTodoList.find({});
     res.send(data);
-    console.log(data.length)
   })
 
 // POST 크리에이트 API
@@ -73,5 +72,17 @@ app.delete('/deleteOne', async function (req, res) {
     } catch (error) {
         res.sendStatus(400)
         console.log(error)
+    }
+})
+
+// Reset 초기화(리스트를 전부다 삭제하는) API
+app.delete('/resetAll', async function (req, res) {
+    try {
+
+        await MyTodoList.deleteMany({});
+        res.sendStatus(200);
+    }   catch (error) {
+            res.sendStatus(400);
+            console.log(error)
     }
 })

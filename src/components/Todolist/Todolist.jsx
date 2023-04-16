@@ -6,28 +6,39 @@ import './Todolist.css'
 import axios from 'axios'
 
 export default function Todolist() {
-  const [datas, setDatas] = useState([]);
-  const [todos, setTodos] = useState([]);
+  // const [todos, setTodos] = useState([]);
   const [count, setCount] = useState(0);
+  const [datas, setDatas] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/loadAllPost')
-    .then((response) => {
-      setDatas(response.data)
-      setCount(datas.length)
-    })
-  }, [datas]);
+    useEffect(() => {
+      axios.get('http://localhost:8080/loadAllPost')
+      .then((response) => {
+        console.log(response.data)
+        setDatas(response.data)
+        setCount(response.data.length)
+      })
+      console.log(count)
+    }, []);
 
-  const handleAdd = (todo) => setTodos([...todos, todo]);
+    console.log(datas)
+    console.log(datas.length)
+    console.log(count)
+
+  const handleAdd = (data) => setDatas([...datas, data]);
   const handleUpdate = (updated) =>
-    setTodos(todos.map((t) => (t.key === updated.key ? updated : t)));
+    setDatas(datas.map((t) => (t.key === updated.key ? updated : t)));
   const handleDelete = (deleted) =>
-    setTodos(todos.filter((t) => t.id !== deleted.id));
-  const handleReset = () => {
-    setTodos(todos.filter((t) => t.id === 0));
+    setDatas(datas.filter((t) => t !== deleted));
+  const handleReset = async () => {
+    try{
+    await axios.delete('http://localhost:8080/resetAll', {})
+    } catch (err) {
+      console.log(err)
+    }
+    setDatas(datas.filter((t) => t.id === 0));
     resetCounter();}
-  const plusCounter = () => setCount(todos.length + 1);
-  const minusCounter = () => setCount(todos.length - 1);
+  const plusCounter = () => setCount(datas.length + 1);
+  const minusCounter = () => setCount(datas.length - 1);
   const resetCounter = () => setCount(0);
 
   return (
@@ -38,7 +49,7 @@ export default function Todolist() {
       <ResetBtn
       onReset={handleReset}
       />
-      <AddTodo 
+      <AddTodo
       onAdd={handleAdd}
       />
         <ul className='todos'>
@@ -48,12 +59,12 @@ export default function Todolist() {
             id={item._id}
             todo={item}
             dataValue={item.job}
-            status={'active' || "completed"}
+            status={'active'}
             onUpdate={handleUpdate}
             onDelete={handleDelete}
             minusCount={minusCounter}
             />
-          ))}
+          ))} 
           {/* {todos.map((todo) => (
             <Todo
             key={todo.key}
