@@ -6,7 +6,7 @@ I made a very simple todolist website and all the joblists you make are will be 
 I learned basic mechanism between frontend and backend which is connection of user and server while making this project.
 
     * What technologies(language, module..etc) i used.
-    Html / CSS / React / node.js / nodemon / body-parser / axios / express / cors / dotenv / mongoDB / mongoose
+    Html / CSS / React / node.js / nodemon / axios / express / cors / dotenv / mongoDB / mongoose
 
     * what did i use for learning about this project
     - all the offical website for language and modules.
