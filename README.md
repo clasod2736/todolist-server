@@ -1,9 +1,9 @@
-## Hi! I'm Joon. This is my Todolist project.
-Hi! This is my first mini project that tried to connect React-app and Server / Database.
+# Hi! I'm Joon. I study coding by myself.
+This is my first mini project that tried to connect React-app with Server/Database.
 
 I made a very simple todolist website and all the joblists you make are will be saved in the database.
 
-I learned basic mechanism between frontend and backend which is connection of user and server.
+I learned basic mechanism between frontend and backend which is connection of user and server while making this project.
 
     * What technologies(language, module..etc) i used.
     Html / CSS / React / node.js / nodemon / body-parser / axios / express / cors / dotenv / mongoDB / mongoose
