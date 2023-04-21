@@ -28,8 +28,12 @@ app.get('/', (res, req) => {
 //데이터 베이스에있는 리스트 전부 불러오기.
 app.get('/loadAllPost', async function (req, res) {
     const data = await MyTodoList.find({});
+    try {
     res.send(data);
-    console.log(data)
+    console.log("All Posts are loaded.")
+    } catch (err) {
+        res.sendStatus(400);
+    }
   })
 
 // POST 크리에이트 API
@@ -64,7 +68,7 @@ app.delete('/deleteOne', async function (req, res) {
             { "_id": todoId }
         );
         res.sendStatus(200)
-        console.log('deleted')
+        console.log('deleted:', todoJob )
     } catch (error) {
         res.sendStatus(400)
         console.log(error)
@@ -77,6 +81,7 @@ app.delete('/resetAll', async function (req, res) {
 
         await MyTodoList.deleteMany({});
         res.sendStatus(200);
+        console.log("Reset!!")
     }   catch (error) {
             res.sendStatus(400);
             console.log(error)
