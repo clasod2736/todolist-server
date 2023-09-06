@@ -18,11 +18,15 @@ export default function Todolist() {
       });
     }, []);
 
+
   const handleAdd = (data) => setDatas([...datas, data]);
+  
   const handleUpdate = (updated) =>
     setDatas(datas.map((t) => (t.job === updated.job ? updated : t)));
+  
   const handleDelete = (deleted) =>
     setDatas(datas.filter((t) => t !== deleted));
+  
   const handleReset = async () => {
     
     // 리셋 API 요청

@@ -62,13 +62,12 @@ app.post('/insert', async function (req, res) {
 app.delete('/deleteOne', async function (req, res) {
     try {
         const todoId = req.body.id;
-        const todoJob = req.body.job;
 
         await MyTodoList.deleteOne(
             { "_id": todoId }
         );
         res.sendStatus(200)
-        console.log('deleted:', todoJob )
+        console.log('deleted')
     } catch (error) {
         res.sendStatus(400)
         console.log(error)
